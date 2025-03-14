@@ -1,0 +1,25 @@
+
+[
+    {
+      "id": 1,
+      "description": "2 Beds  |  2 Baths  |  1-Car Garage *This listing is wheelchair-accessible",
+       "image": "public/1.jpg",
+       "title":"500 Halderfair Tower",
+       "header":"Condominium"
+    },
+    {
+      "id": 2,
+      "description": "2 Beds | 2 Baths | 1-Car Garage",
+       "image": "public/2.jpg",
+       "title":"54 Ferrinhill Street",
+       "header":"Apartment"
+    },
+    {
+      "id": 3,
+       "description": "3 Beds | 2 Baths | 1-Car Garage *This listing is wheelchair-accessible",
+       "image": "public/3.jpg",
+       "title":"23 Siennalane Hill",
+       "header":"House"
+    }
+]
+  
