@@ -1,4 +1,4 @@
-export const LeaseCard = ({ data }) => {
+export const Salecard = ({ data }) => {
     const { id, description, image, title, header } = data;
   
     return (
