@@ -2,9 +2,9 @@ export const Salecard = ({ data }) => {
     const { id, description, image, title, header } = data;
   
     return (
-      <div className="bg-white shadow-lg rounded-2xl overflow-hidden p-4 w-[320px]">
+      <div className="bg-white  rounded-2xl overflow-hidden p-4 w-[25vw] h-[60vh]">
         {/* Image Section */}
-        <div className="w-full h-48 overflow-hidden rounded-xl">
+        <div className="w-full h-48 overflow-hidden ">
           <img
             src={image}
             alt={id}
