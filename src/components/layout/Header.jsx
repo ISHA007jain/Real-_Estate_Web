@@ -20,7 +20,7 @@ export const Header = () => {
   }, [darkMode]);
 
   return (
-    <header className="bg-white dark:bg-gray-900 dark:text-white shadow-md transition duration-300">
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 dark:text-white shadow-md transition duration-300">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
