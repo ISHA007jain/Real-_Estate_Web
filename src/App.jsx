@@ -3,6 +3,7 @@ import { ErrorPage } from "./pages/Errorpage";
 import { Home } from "./pages/Home";
 import { Contact } from "./pages/Contact";
 import { AppLayout } from "./components/layout/Applayout";
+import About from "./pages/About";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const App = () => {
         {
           path: "/",
           element: <Home />
+        },
+        {
+          path: "/about",
+          element:<About/>
         },
         {
           path: "/contact",
