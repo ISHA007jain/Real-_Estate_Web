@@ -1,7 +1,7 @@
 import React from 'react'
 
 function About() {
-    return (
+    return (  
         <div className='w-full h-screen flex '>
             <div className='w-1/3 h-screen  '>
                 <h1 className='text-b text-6xl m-16'>About US</h1>

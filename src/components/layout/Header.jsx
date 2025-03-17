@@ -24,7 +24,7 @@ export const Header = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
-          <img src="/logo.png" alt="logo" className="h-10 w-auto" />
+          <img src="/logo_for.png" alt="logo" className="w-[100px] h-[100px]" />
         </NavLink>
 
         {/* Navigation Links */}
