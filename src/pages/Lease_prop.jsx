@@ -1,46 +1,89 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import LeasePropertyData from "../api/Lease_Properties.json";
 import { LeaseCard } from "../components/UI/LeaseCard";
+import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 
-function Lease_prop() {
-  const [visible, setVisible] = useState(3);
+export const Lease_prop = () => {
+  const [cardsToShow, setCardsToShow] = useState(1);
+  const scrollContainerRef = useRef(null);
 
-  const showMoreItems = () => {
-    setVisible((prev) => prev + 3);
+  useEffect(() => {
+    const updateCardsToShow = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsToShow(3); // Large screens
+      } else if (window.innerWidth >= 768) {
+        setCardsToShow(2); // Medium screens
+      } else {
+        setCardsToShow(1); // Small screens
+      }
+    };
+
+    updateCardsToShow();
+    window.addEventListener("resize", updateCardsToShow);
+    return () => window.removeEventListener("resize", updateCardsToShow);
+  }, []);
+
+  const scrollAmount = () => {
+    return scrollContainerRef.current
+      ? scrollContainerRef.current.clientWidth / cardsToShow
+      : 0;
+  };
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -scrollAmount(),
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount(),
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <div className="px-16 py-8">
-      {/* Title & Subtitle */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-5xl font-bold text-gray-900">Properties</h1>
-        <span className="text-gray-400 text-lg font-semibold">For Lease</span>
+    <div className="container mx-auto p-6">
+      {/* Header */}
+      <h2 className="text-3xl font-bold text-gray-900">Properties</h2>
+      <span className="text-gray-400 text-lg font-semibold">For Lease</span>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-end items-center my-4">
+        <button
+          onClick={scrollLeft}
+          className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+          aria-label="prev project"
+        >
+          <FaArrowCircleLeft size={30} className="text-gray-600 hover:text-gray-800" />
+        </button>
+        <button
+          onClick={scrollRight}
+          className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition ml-2"
+          aria-label="next project"
+        >
+          <FaArrowCircleRight size={30} className="text-gray-600 hover:text-gray-800" />
+        </button>
       </div>
 
-      {/* Card Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6">
-        {LeasePropertyData.slice(0, visible).map((data) => (
-          <div 
-            key={data.id} 
-            className="transform transition-transform duration-300 hover:scale-105"
-          >
-            <LeaseCard data={data} />
-          </div>
-        ))}
-      </div>
-
-      {visible < LeasePropertyData.length && (
-        <div className="flex justify-center mt-10">
-          <button
-            onClick={showMoreItems}
-            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            Load More
-          </button>
+      {/* Scrollable Cards Container */}
+      <div className="overflow-hidden relative">
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-8 overflow-x-auto scroll-smooth hide-scrollbar"
+        >
+          {LeasePropertyData.map((property) => (
+            <div key={property.id} className="flex-shrink-0 w-[320px] transform transition duration-300 hover:scale-105">
+              <LeaseCard data={property} />
+            </div>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
-}
-
-export default Lease_prop;
+};
