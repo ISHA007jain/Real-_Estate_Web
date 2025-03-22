@@ -21,10 +21,10 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 dark:text-white shadow-md transition duration-300">
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+      <div className="container mx-auto flex items-center justify-between py-2 px-4">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
-          <img src="/logo_for.png" alt="logo" className="w-[50px] h-[50px] transition-transform duration-400 scale-150" />
+          <img src="/logo_for.png" alt="logo" className="w-[40px] h-[40px] transition-transform duration-400 scale-150" />
         </NavLink>
 
         {/* Navigation Links */}
